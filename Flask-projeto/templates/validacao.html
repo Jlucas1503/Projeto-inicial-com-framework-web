@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação</title>
+</head>
+<body>
+    <h2>Confirme seus dados:</h2>
+    <form action="/validar" method="post">
+        <label>E-mail:</label>
+        <div class="input">
+            <input type="email" name="mail" id="mail" placeholder="Ex.: xxxx.xxxx@gmail.com" required>
+        </div>
+        <label>Senha:</label>
+        <div class="input">
+            <input type="password" name="senha" id="senha" placeholder="123Nome#@" required>
+        </div>
+        <button type="submit">Confirmar</button>
+    </form>    
+</body>
+</html>

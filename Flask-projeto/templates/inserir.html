@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inserir Pokemon</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo5.css') }}">
+</head>
+<body>
+    <form action="/inserir" method="post" enctype="multipart/form-data">
+        <h2>Adicionar Pokemon</h2>
+
+        <label>Nome:</label>
+        <div class="input">
+            <input type="text" name="nome" id="nome" placeholder="Ex.: Pikachu" required>
+        </div>
+        <label>Tipo:</label>
+        <div class="select">
+            <select name="tipo" id="tipo" required>
+                <option>Normal</option>
+                <option>Fogo</option>
+                <option>Água</option>
+                <option>Grama</option>
+                <option>Voador</option>
+                <option>Lutador</option>
+                <option>Veneno</option>
+                <option>Elétrico</option>
+                <option>Terra</option>
+                <option>Pedra</option>
+                <option>Psíquico</option>
+                <option>Gelo</option>
+                <option>Inseto</option>
+                <option>Fantasma</option>
+                <option>Ferro</option>
+                <option>Dragão</option>
+                <option>Sombrio</option>
+                <option>Fada</option>
+            </select>
+        </div>
+        <label>Raridade:</label>
+        <div class="select">
+            <select name="raridade" id="raridade" required>
+                <option>Muito Comum</option>
+                <option>Comum</option>
+                <option>Incomum</option>
+                <option>Raro</option>
+                <option>Muito raro</option>
+                <option>Épico</option>
+                <option>Lendário</option>
+            </select>
+        </div>
+        <label>Foto(jpg):</label>
+        <div class="file">
+            <input type="file" name="imagem" id="imagem" accept=".jpg" required>
+        </div>
+        <div id="btn">
+            <button type="submit">Concluir</button>
+        </div>
+    </form>
+</body>
+</html>

@@ -147,7 +147,7 @@ def validar_dados():
 @app.route('/pokemons', methods=['GET', 'POST']) #Página onde o usuário pode verificar os pokemos existentes no site
 def mostrar_pokemon():
     if request.method == 'POST':
-        nomepokemon = request.form['nomepokemon']
+        nomepokemon = request.form['search']
         cursor.execute(f"SELECT nome, tipo, raridade, imagem FROM pokemon WHERE nome = '{nomepokemon}';")
 
         linha = cursor.fetchone()

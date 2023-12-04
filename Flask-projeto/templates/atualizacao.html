@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mudar Senha</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo4.css') }}">
+</head>
+<body>
+    <form method="post" action="/atualizar">
+        <label>E-mail:</label>
+        <div class="input">
+            <input type="email" name="mail" id="mail" placeholder="Ex.: xxxx.xxxx@gmail.com" required>
+        </div>
+        <label>Senha Atual:</label>
+        <div class="input">
+            <input type="password" name="senha_atual" id="senha_atual" placeholder="123Nome#@" required>
+        </div>
+        <label>Nova Senha:</label>
+        <div class="input">
+            <input type="password" name="nova_senha" id="nova_senha" placeholder="123Nome#@" required>
+        </div>
+        <div id="btn">
+            <button type="submit">Confirmar</button>
+        </div>
+    </form>
+</body>
+</html>

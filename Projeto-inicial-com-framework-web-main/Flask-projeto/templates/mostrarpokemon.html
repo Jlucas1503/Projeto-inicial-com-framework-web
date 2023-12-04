@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pokemons</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo2.css') }}">
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Nome</th>
+        </tr>
+        <tr>
+            <td id="nome">{{ nome2 }}</td>
+        </tr>
+        <tr>
+            <th>Tipo</th>
+        </tr>
+        <tr>
+            <td id="tipo">{{ tipo2 }}</td>
+        </tr>
+        <tr>
+            <th>Raridade</th>
+        </tr>
+        <tr>
+            <td id="raridade">{{ raridade2 }}</td>
+        </tr>
+        <tr>
+            <th>Imagem</th>
+        </tr>
+        <tr>
+            <td id="foto"><img src="data:image/jpeg;base64,{{ foto2 }}" alt="Foto do Pokémon" style="width: 400px; height: 400px;"></td>
+        </tr>
+    </table>
+</body>
+</html>
