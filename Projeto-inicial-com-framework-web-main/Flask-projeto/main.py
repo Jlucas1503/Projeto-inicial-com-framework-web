@@ -5,7 +5,7 @@ import base64
 banco = mysql.connector.connect(
     host = "localhost",
     user = "root",
-    password = "labinfo",
+    password = "labhugo",
     database = "pokemon"
 )
 cursor = banco.cursor()
@@ -28,11 +28,11 @@ def cadastro():
         linha = cursor.fetchone()
 
         if linha is not None: #Caso já exista um valor com o mesmo e-mail
-            return render_template("negativa1.html")
+            return render_template("negativa1.html", mensagem="Parece que já existe um usuário com essas credenciais. Confira seus dados e tente novamente!")
         else:
             cursor.execute(f"INSERT INTO usuario VALUES (%s, %s, %s, %s);", (email, nome, nascimento, senha))
             banco.commit()
-            return render_template("positiva1.html")    
+            return render_template("positiva1.html", mensagem="Obrigado por se cadastrar na plataforma! Sinta-se a vontade para explorar nossos pokemons cadastrados e cadastrar um pokemon também.")    
     else:
         return render_template("cadastrar.html")
 
@@ -71,11 +71,11 @@ def atualizar():
             if linha[0] == senha_atual:
                 cursor.execute(f"UPDATE usuario SET senha = %s WHERE email = %s;", (senha_nova, email_atualizar))
                 banco.commit()
-                return render_template("positiva2.html")
+                return render_template("positiva1.html", mensagem="Você acabou de atualizar sua senha! Continue explorando nossa plataforma e divirta-se.")
             else:
-                return render_template("negativa2.html")
+                return render_template("negativa1.html", mensagem="Parece que sua senha está incorreta. Confira seus dados e tente novamente!")
         else:
-            return render_template("negativa2.html")
+            return render_template("negativa1.html", mensagem="Parece que não existe um usuário com essas credenciais. Confira seus dados e tente novamente!")
     else:
         return render_template("atualizacao.html")
     
@@ -100,7 +100,7 @@ def inserir():
         linha = cursor.fetchone()
 
         if linha is not None: #Caso o pokemom com as caracteristicas acima já exista
-            return render_template("negativa3.html")
+            return render_template("negativa1.html", mensagem="Parece que já existe um pokemon com essas características. Confira seus dados e tente novamente!")
         else:
             temp_nome = nome
             temp_tipo = tipo
@@ -136,13 +136,13 @@ def validar_dados():
                 cod = linha[0]
                 cursor.execute(f"INSERT INTO cadastra VALUES (%s, %s);", (cod, mail_pesquisa))
                 banco.commit()
-                return render_template('positiva3.html')
+                return render_template("positiva1.html", mensagem="Obrigado por nos mostrar outro pokemon! Sinta-se a vontade para explorar nossos pokemons cadastrados e cadastrar outro pokemon também.")
             else:
-                return render_template('negativa2.html')
+                return render_template("negativa1.html", mensagem="Parece que sua senha está incorreta. Confira seus dados e tente novamente!")
         else:
-            return render_template('negativa2.html')
+            return render_template("negativa1.html", mensagem="Parece que não existe um usuário com essas credenciais. Confira seus dados e tente novamente!")
     else:
-        return render_template('validacao.html')
+        return render_template("validacao.html")
     
 @app.route('/pokemons', methods=['GET', 'POST']) #Página onde o usuário pode verificar os pokemos existentes no site
 def mostrar_pokemon():
@@ -158,15 +158,17 @@ def mostrar_pokemon():
             raridadepoke = linha[2]
             fotopoke = linha[3]
             fotopoke2 = base64.b64encode(fotopoke).decode('utf-8') #Converter os dados binários em uma imagem
+
+            return render_template("mostrarpokemon2.html", nome2=nomepoke, tipo2=tipopoke, raridade2=raridadepoke, foto2 = fotopoke2)
         else:
             nomepoke = ""
             tipopoke = ""
             raridadepoke = ""
             fotopoke2 = ""
 
-        return render_template("mostrarpokemon.html", nome2=nomepoke, tipo2=tipopoke, raridade2=raridadepoke, foto2 = fotopoke2)
+            return render_template("negativa1.html", mensagem="Parece que já existe um pokemon com essas características. Confira seus dados e tente novamente!")
     else:
-        return render_template("mostrarpokemon.html", nome2="", tipo2="", raridade2="", foto2="")
+        return render_template("mostrarpokemon2.html", nome2="", tipo2="", raridade2="", foto2="")
     
 if __name__ == "__main__":
     app.run(debug=True)
