@@ -20,7 +20,41 @@ label {
     display: block;
     margin-bottom: 5px;
 }
+h2 {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    display: block;
+    margin-bottom: 5px;
+}
+h1 {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    display: block;
+    margin-bottom: 5px;
+}
+.menss {
+    font-family: 'Poppins', sans-serif;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
 input[type="text"] {
+    font-family: 'Poppins', sans-serif;
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+input[type="password"] {
     font-family: 'Poppins', sans-serif;
     width: 95%;
     padding: 10px;
