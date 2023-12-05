@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <title>Deu errado :(</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo3.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo2.css') }}">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Cadastro Incompleto!</h1>
-            <div>
-                    <p>Olá, parece que o usúario com essas credenciais já existe. Confira seus dados com atenção e tente novamente!</p>
+            <h1>Ops!</h1>
+            <div class="menss">
+                    <p>{{ mensagem }}</p>
             </div>
         </div>
     </header>    
