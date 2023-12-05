@@ -159,7 +159,7 @@ def mostrar_pokemon():
             fotopoke = linha[3]
             fotopoke2 = base64.b64encode(fotopoke).decode('utf-8') #Converter os dados binários em uma imagem
 
-            return render_template("mostrarpokemon2.html", nome2=nomepoke, tipo2=tipopoke, raridade2=raridadepoke, foto2 = fotopoke2)
+            return render_template("mostrarpokemon.html", nome2=nomepoke, tipo2=tipopoke, raridade2=raridadepoke, foto2 = fotopoke2)
         else:
             nomepoke = ""
             tipopoke = ""
@@ -168,7 +168,7 @@ def mostrar_pokemon():
 
             return render_template("negativa1.html", mensagem="Parece que já existe um pokemon com essas características. Confira seus dados e tente novamente!")
     else:
-        return render_template("mostrarpokemon2.html", nome2="", tipo2="", raridade2="", foto2="")
+        return render_template("mostrarpokemon.html", nome2="", tipo2="", raridade2="", foto2="")
     
 if __name__ == "__main__":
     app.run(debug=True)
