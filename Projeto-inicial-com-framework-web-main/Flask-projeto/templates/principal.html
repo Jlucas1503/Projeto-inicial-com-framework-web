@@ -1,97 +1,93 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="utf-8">
-    <title>Início</title>
-    <link rel="stylesheet" href="static/css/estilo3.css">
+  <meta charset="utf-8">
+  <title>Início</title>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo3.css') }}">
+  <script type="text/javascript" src="{{ url_for('static', filename='js/script1.js') }}"></script>
 </head>
-<!-- Barra de pesquisa-->
 <body>
-    <div class="search-bar">
-        <form action="/pokemons" method="post">
-            <label for="search">Pesquisar:</label>
-            <input type="text" id="search" name="search" placeholder="Digite sua pesquisa aqui">
-            <input type="submit" value="Pesquisar">
-        </form>
-    </div> 
-<!-- FIm da barra de pesquisa-->
-
-<section class="pokemons-container">
-<div class="quadro-pokemon" id="charmander">
-
-    <a href="###"><img src="imagens-pokemons/charmander.png" alt="charmander">
-    <h2>Charmander</h2>
-    </a>
-</div>
-
-<div class="quadro-pokemon" id="squirtle">
-    <a href="###"><img src="imagens-pokemons/squirtle.png" alt="squirtle">
-    <h2>Squirtle</h2>
-    </a>
-</div>
-
-<div class="quadro-pokemon" id="bulbasaur">
-    <a href="###"><img src="imagens-pokemons/bulbasaur.png" alt="bulbasaur">
-    <h2>Bulbasaur</h2>
-    </a>
-</div>
-
-<div class="quadro-pokemon" id="caterpie">
-    <a href="###"><img src="imagens-pokemons/caterpie.png" alt="caterpie">
-    <h2>Caterpie</h2>
-    </a>
-</div>
-
-
-
-
-
-
-
-</section>
-    <!--  div barra lateral --> 
-    <div class="sidebar" id="sidebar">
-        <a href="#" onclick="toggleSubOptions('sub-options-1')">Tipo</a>
-        <ul class="sub-options" id="sub-options-1">
-            <li><a href="#">Normal</a></li>
-            <li><a href="#">Fogo</a></li>
-            <li><a href="#">Água</a></li>
-            <li><a href="#">Grama</a></li>
-            <li><a href="#">Voador</a></li>
-            <li><a href="#">Lutador</a></li>
-            <li><a href="#">Veneno</a></li>
-            <li><a href="#">Elétrico</a></li>
-            <li><a href="#">Terra</a></li>
-            <li><a href="#">Pedra</a></li>
-            <li><a href="#">Psíquico</a></li>
-            <li><a href="#">Gelo</a></li>
-            <li><a href="#">Inseto</a></li>
-            <li><a href="#">Fantasma</a></li>
-            <li><a href="#">Ferro</a></li>
-            <li><a href="#">Dragão</a></li>
-            <li><a href="#">Sombrio</a></li>
-            <li><a href="#">Fada</a></li>
-        </ul>
-        <a href="#" onclick="toggleSubOptions('sub-options-2')">Raridade</a>
-        <ul class="sub-options" id="sub-options-2">
-            <li><a href="#">Muito comum</a></li>
-            <li><a href="#">Comum</a></li>
-            <li><a href="#">Incomum</a></li>
-            <li><a href="#">Raro</a></li>
-            <li><a href="#">Muito raro</a></li>
-            <li><a href="#">Épico</a></li>
-            <li><a href="#">Lendários</a></li>
-        </ul>
+  <!-- Lateral -->
+  <nav class="sidebar">
+    <div class="sidebar-top-wrapper"> <!-- Topo da barra lateral -->
+      <div class="sidebar-top">
+        <a href="{{ url_for('home') }}" class="logo__wrapper">
+          <img src="static\img\pokeball-png-45354.png" alt="Logo" class="logo-small">
+          <span class="hide">PokePalace</span>
+        </a>
+      </div>
+      <div class="expand-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.00979 2.72L10.3565 7.06667C10.8698 7.58 10.8698 8.42 10.3565 8.93333L6.00979 13.28" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+    </div> <!-- Fim do topo da barra lateral -->
+    <form class="search__wrapper" action="/pokemons" method="post"> <!-- Barra de pesquisa -->
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 9L13 13M5.66667 10.3333C3.08934 10.3333 1 8.244 1 5.66667C1 3.08934 3.08934 1 5.66667 1C8.244 1 10.3333 3.08934 10.3333 5.66667C10.3333 8.244 8.244 10.3333 5.66667 10.3333Z" stroke="#697089" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <input type="text" id="search" name="search" placeholder="Buscar Pokemon...">
+    </form> <!-- Fim da barra de pesquisa -->
+    <div class="sidebar-links">
+      <h2>Main</h2>
+      <ul>
+        <li>
+          <a href="{{ url_for('home') }}" title="Home" class="tooltip">
+            <i class='bx bx-home'></i>
+            <span class="link hide">Home</span>
+            <span class="tooltip__content">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('cadastro') }}" title="Cadastre-se" class="tooltip">
+            <i class='bx bx-user-plus' ></i>
+            <span class="link hide">Cadastre-se</span>
+            <span class="tooltip__content">Cadastre-se</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('inserir') }}" title="Incluir Pokemon" class="tooltip">
+            <i class='bx bxs-cat' ></i>
+            <span class="link hide">Incluir Pokemon</span>
+            <span class="tooltip__content">Incluir Pokemon</span>
+          </a>
+        </li>
+        <li>
+          <a href="#pokemons" title="Pokemons" class="tooltip">
+            <i class='bx bx-book' ></i>
+            <span class="link hide">Pokemons</span>
+            <span class="tooltip__content">Pokemons</span>
+          </a>
+        </li>
+      </ul>
     </div>
-    <!-- Fim da barra lateral -->
+  </nav> <!-- Fim da barra lateral -->
 
+  <section class="pokemons-container">
+    <div class="quadro-pokemon" id="charmander">
+      <a href="###"><img src="imagens-pokemons/charmander.png" alt="charmander">
+        <h2>Charmander</h2>
+      </a>
+    </div>
 
-    <script>
-        function toggleSubOptions(id) {
-            var subOptions = document.getElementById(id);
-            subOptions.style.display = (subOptions.style.display === 'none') ? 'block' : 'none';
-        }
+    <div class="quadro-pokemon" id="squirtle">
+      <a href="###"><img src="imagens-pokemons/squirtle.png" alt="squirtle">
+        <h2>Squirtle</h2>
+      </a>
+    </div>
 
-    </script>
+    <div class="quadro-pokemon" id="bulbasaur">
+      <a href="###"><img src="imagens-pokemons/bulbasaur.png" alt="bulbasaur">
+        <h2>Bulbasaur</h2>
+      </a>
+    </div>
+
+    <div class="quadro-pokemon" id="caterpie">
+      <a href="###"><img src="imagens-pokemons/caterpie.png" alt="caterpie">
+        <h2>Caterpie</h2>
+      </a>
+    </div>
+  </section>
 </body>
 </html>
