@@ -14,6 +14,8 @@ app = Flask(__name__)
 
 @app.route('/home') #Página Inicial do site
 def home():
+    #cursor.execute(f"SELECT * FROM pokemon ORDER BY codigo DESC LIMIT 5;")
+    #linha = cursor.fetchone()
     return render_template("principal.html")
 
 @app.route('/cadastro', methods=['GET', 'POST']) #Cadastro de usuários do site
