@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pokemons</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo6.css') }}">
+</head>
+<body>
+    <div class="form-wrapper">
+        <div class="form-side">
+            <form class="my-form">
+                <div class="form-welcome-row">
+                    <h1>Informações</h1>
+                </div>
+                <div class="text-field">
+                    <label for="email">Nome:
+                        <p>{{ nome2 }}</p>
+                    </label>
+                </div>
+                <div class="text-field">
+                    <label for="password">Tipo:
+                        <p>{{ tipo2 }}</p>
+                    </label>
+                </div>
+                <div class="text-field">
+                    <label for="email">Raridade:
+                        <p>{{ raridade2 }}</p>
+                    </label>
+                </div>
+            </form>
+        </div>
+        <div class="info-side">
+            <p id="foto"><img src="data:image/jpeg;base64,{{ foto2 }}" alt="Foto do Pokémon"></p>
+        </div>
+    </div>
+</body>
+</html>

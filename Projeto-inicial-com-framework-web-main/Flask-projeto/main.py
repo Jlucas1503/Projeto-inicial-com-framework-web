@@ -14,9 +14,19 @@ app = Flask(__name__)
 
 @app.route('/home') #Página Inicial do site
 def home():
-    #cursor.execute(f"SELECT * FROM pokemon ORDER BY codigo DESC LIMIT 5;")
-    #linha = cursor.fetchone()
-    return render_template("principal.html")
+    cursor.execute("SELECT nome, imagem FROM pokemon ORDER BY codigo DESC LIMIT 5;")
+    resultados = cursor.fetchall()
+
+    dados_pokemon = []
+    for linha in resultados:
+        nome_pokemon = linha[0]
+        imagem_pokemon = linha[1]
+        imagem_base64 = base64.b64encode(imagem_pokemon).decode('utf-8')
+
+        dados_pokemon.append(nome_pokemon)
+        dados_pokemon.append(imagem_base64)
+
+    return render_template("principal.html", nome1=dados_pokemon[0], foto1=dados_pokemon[1], nome2=dados_pokemon[2], foto2=dados_pokemon[3], nome3=dados_pokemon[4], foto3=dados_pokemon[5], nome4=dados_pokemon[6], foto4=dados_pokemon[7], nome5=dados_pokemon[8], foto5=dados_pokemon[9])
 
 @app.route('/cadastro', methods=['GET', 'POST']) #Cadastro de usuários do site
 def cadastro():
