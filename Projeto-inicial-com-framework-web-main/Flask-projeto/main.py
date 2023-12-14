@@ -12,7 +12,7 @@ cursor = banco.cursor()
 
 app = Flask(__name__)
 
-@app.route('/home') #Página Inicial do site
+@app.route('/home') #Página Principal do site
 def home():
     cursor.execute("SELECT nome, imagem FROM pokemon ORDER BY codigo DESC LIMIT 5;")
     resultados = cursor.fetchall()
@@ -156,7 +156,7 @@ def validar_dados():
     else:
         return render_template("validacao.html")
     
-@app.route('/pokemons', methods=['GET', 'POST']) #Página onde o usuário pode verificar os pokemos existentes no site
+@app.route('/pokemons/', methods=['GET', 'POST']) #Página onde o usuário pode verificar os pokemos existentes no site
 def mostrar_pokemon():
     if request.method == 'POST':
         nomepokemon = request.form['search']
@@ -173,14 +173,26 @@ def mostrar_pokemon():
 
             return render_template("mostrarpokemon.html", nome2=nomepoke, tipo2=tipopoke, raridade2=raridadepoke, foto2 = fotopoke2)
         else:
-            nomepoke = ""
-            tipopoke = ""
-            raridadepoke = ""
-            fotopoke2 = ""
-
-            return render_template("negativa1.html", mensagem="Parece que já existe um pokemon com essas características. Confira seus dados e tente novamente!")
+            return render_template("negativa1.html", mensagem="Parece que não existe um pokemon com essas características. Confira seus dados e tente novamente!")
     else:
         return render_template("mostrarpokemon.html", nome2="", tipo2="", raridade2="", foto2="")
+    
+@app.route('/pokemon/<nome>', methods=['GET']) #Página onde serão exibidas as informações dos cards
+def mostrar_pokemons(nome):
+    cursor.execute(f"SELECT nome, tipo, raridade, imagem FROM pokemon WHERE nome = '{nome}';")
+
+    linha = cursor.fetchone()
+
+    if linha:
+        nomepoke = linha[0]
+        tipopoke = linha[1]
+        raridadepoke = linha[2]
+        fotopoke = linha[3]
+        fotopoke2 = base64.b64encode(fotopoke).decode('utf-8') #Converter os dados binários em uma imagem
+
+        return render_template("mostrarpokemon.html", nome2=nomepoke, tipo2=tipopoke, raridade2=raridadepoke, foto2 = fotopoke2)
+    else:
+        return render_template("negativa1.html", mensagem="Parece que não existe um pokemon com essas características. Confira seus dados e tente novamente!")
     
 if __name__ == "__main__":
     app.run(debug=True)
