@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo8.css') }}">
+    </head>
+    <body>
+        <div id="form">
+            <form action="/login" method="post">
+                <h2>Entrar</h2>
+
+                <label>E-mail:</label>
+                <div class="input">
+                    <input type="email" name="mail" id="mail" placeholder="Ex.: xxxx.xxxx@gmail.com" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="wheat" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 12m-4 3a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                        <path d="M16 15v1.5a2.5 2.5 0 0 0 5 0v-1.5a9 9 0 1 0 -5.5 8.28"></path>
+                    </svg>
+                </div>
+                <label>Senha:</label>
+                <div class="input">
+                    <input type="password" name="senha" id="senha" placeholder="123Nome#@" title="Minimo de 6 caracteres com pelo menos 1 letra e 1 número" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="wheat" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z"></path>
+                        <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path>
+                        <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
+                    </svg>
+                </div>
+                <div id="btn">
+                    <a href="{{ url_for('cadastro') }}">Não possui conta? Cadastre-se</a>
+                </div>
+                <div id="btn">
+                    <button type="submit">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

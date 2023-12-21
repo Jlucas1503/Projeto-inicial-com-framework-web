@@ -7,40 +7,27 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo2.css') }}">
 </head>
 <body>
-    <form method="post" action="/dados">
-        <label>Email:</label>
-        <div class="input">
-            <input type="email" name="mail_pesquisa" id="mail_pesquisa" placeholder="Ex.: xxxxx.xxxx@gmail.com" required>
+    <form class="my-form">
+        <div class="form-welcome-row">
+            <h1>Informações</h1>
         </div>
-        <div id="btn">
-            <button type="submit">Enviar</button>
+        <div class="text-field">
+            <label for="email">Nome:</label>
+            <p>{{ nome2 }}</p>
+        </div>
+        <div class="text-field">
+            <label for="password">E-mail:</label>
+            <p>{{ mail2 }}</p>
+        </div>
+        <div class="text-field">
+            <label for="email">Nascimento:</label>
+            <p>{{ nascimento2 }}</p>
+        </div>
+        <div class="text-field">
+            <label for="email">Senha:</label>
+            <p>**********</p>
+            <button type="submit" id="btn"><a href="{{ url_for('atualizar') }}">Alterar Senha</a></button>
         </div>
     </form>
-    <table>
-        <tr>
-            <th>Nome</th>
-        </tr>
-        <tr>
-            <td id="nome">{{ nome2 }}</td>
-        </tr>
-        <tr>
-            <th>E-mail</th>
-        </tr>
-        <tr>
-            <td id="mail">{{ mail2 }}</td>
-        </tr>
-        <tr>
-            <th>Nascimento</th>
-        </tr>
-        <tr>
-            <td id="nascimento">{{ nascimento2 }}</td>
-        </tr>
-        <tr>
-            <th>Senha</th>
-        </tr>
-        <tr>
-            <td id="senhaa"><a href="{{ url_for('atualizar') }}"><button type="submit" id="btn">Alterar Senha</button></a></td>
-        </tr>
-    </table>
 </body>
 </html>

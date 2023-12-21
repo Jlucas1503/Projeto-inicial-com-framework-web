@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import mysql.connector
 import base64
+from datetime import date
 
 banco = mysql.connector.connect(
     host = "localhost",
@@ -48,25 +49,35 @@ def cadastro():
     else:
         return render_template("cadastrar.html")
 
-@app.route('/dados', methods=['GET', 'POST']) #Exibição dos dados dos usuários do site
+@app.route('/login', methods=['GET', 'POST']) #Exibição dos dados dos usuários do site
 def dados():
     if request.method == 'POST':
-        mail_pesquisa = request.form['mail_pesquisa']
-        cursor.execute(f"SELECT nome, email, nascimento FROM usuario WHERE email = '{mail_pesquisa}';")
+        mail_pesquisa = request.form['mail']
+        senha_pesquisa = request.form['senha']
+        cursor.execute(f"SELECT nome, email, nascimento FROM usuario WHERE email = '{mail_pesquisa}' AND senha = '{senha_pesquisa}';")
 
         linha = cursor.fetchone()
-    
-        if linha:
+
+        if linha is not None:
             nomeee = linha[0]
             mailll = linha[1]
             nascimentooo = linha[2]
+
+            if isinstance(nascimentooo, date):
+                nascimentooo = nascimentooo.strftime('%Y-%m-%d')
+
+            datas = nascimentooo.split('-')
+            ano = datas[0]
+            mes = datas[1]
+            dia = datas[2]
+
+            data = dia + '/' + mes + '/' + ano
+
+            return render_template("exibicao.html", nome2=nomeee, mail2=mailll, nascimento2=data)            
         else:
-            nomeee = ""
-            mailll = ""
-            nascimentooo = ""    
-        return render_template("exibicao.html", nome2=nomeee, mail2=mailll, nascimento2=nascimentooo)
+            return render_template("negativa1.html", mensagem="Parece que não existe um usuário com essas credenciais. Confira seus dados e tente novamente!")
     else:
-        return render_template("exibicao.html", nome2="", mail2="", nascimento2="")
+        return render_template("login.html")
 
 @app.route('/atualizar', methods=['GET', 'POST']) #Página de atualização de senhas de usuários do site
 def atualizar():
@@ -156,7 +167,7 @@ def validar_dados():
     else:
         return render_template("validacao.html")
     
-@app.route('/pokemons/', methods=['GET', 'POST']) #Página onde o usuário pode verificar os pokemos existentes no site
+@app.route('/pokemons', methods=['GET', 'POST']) #Página onde o usuário pode verificar os pokemos existentes no site
 def mostrar_pokemon():
     if request.method == 'POST':
         nomepokemon = request.form['search']
