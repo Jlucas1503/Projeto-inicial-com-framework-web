@@ -167,7 +167,7 @@ def validar_dados():
     else:
         return render_template("validacao.html")
     
-@app.route('/pokemons', methods=['GET', 'POST']) #Página onde o usuário pode verificar os pokemos existentes no site
+@app.route('/pokemon', methods=['GET', 'POST']) #Página onde o usuário pode verificar os pokemos existentes no site
 def mostrar_pokemon():
     if request.method == 'POST':
         nomepokemon = request.form['search']
@@ -205,5 +205,21 @@ def mostrar_pokemons(nome):
     else:
         return render_template("negativa1.html", mensagem="Parece que não existe um pokemon com essas características. Confira seus dados e tente novamente!")
     
+@app.route('/pokemons') #Página Principal do site
+def pokemons():
+    cursor.execute("SELECT nome, imagem FROM pokemon ORDER BY RAND() LIMIT 6;")
+    resultados = cursor.fetchall()
+
+    dados_pokemon = []
+    for linha in resultados:
+        nome_pokemon = linha[0]
+        imagem_pokemon = linha[1]
+        imagem_base64 = base64.b64encode(imagem_pokemon).decode('utf-8')
+
+        dados_pokemon.append(nome_pokemon)
+        dados_pokemon.append(imagem_base64)
+
+    return render_template("pokemons.html", nome1=dados_pokemon[0], foto1=dados_pokemon[1], nome2=dados_pokemon[2], foto2=dados_pokemon[3], nome3=dados_pokemon[4], foto3=dados_pokemon[5], nome4=dados_pokemon[6], foto4=dados_pokemon[7], nome5=dados_pokemon[8], foto5=dados_pokemon[9], nome6=dados_pokemon[10], foto6=dados_pokemon[11])
+
 if __name__ == "__main__":
     app.run(debug=True)

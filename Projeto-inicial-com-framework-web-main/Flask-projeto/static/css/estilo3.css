@@ -451,3 +451,7 @@ body.collapsed .expand-btn svg {
   overflow: hidden;
   object-fit: cover;
 }
+
+h3 {
+  text-align: center;
+}

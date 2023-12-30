@@ -14,7 +14,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 body{
-    background-image: url("/static/img/pokemon.jpg");
+    background-image: url("/static/img/pokemon.png"); 
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
