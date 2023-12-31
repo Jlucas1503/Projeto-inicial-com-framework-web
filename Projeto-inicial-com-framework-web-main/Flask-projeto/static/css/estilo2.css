@@ -281,68 +281,6 @@ body.collapsed .sidebar-links li {
 .collapsed .tooltip:hover .tooltip__content {
     visibility: visible;
 }
-
-/*? profile part */
-.sidebar__profile {
-    margin-top: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-direction: row;
-    padding: 0 16px;
-    color: var(--text-link);
-    overflow-x: hidden;
-    min-height: 42px;
-}
-
-.avatar__wrapper {
-    position: relative;
-    display: flex;
-}
-
-.avatar {
-    display: block;
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    cursor: pointer;
-    border-radius: 50%;
-}
-
-.avatar__name {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    white-space: nowrap;
-    animation: fadeIn 0.2s ease-in-out;
-}
-
-.user-name {
-    font-weight: 600;
-    text-align: left;
-    color: var(--text-link);
-    animation: fadeIn 0.2s ease-in-out;
-}
-
-.email {
-    color: var(--text-link);
-    font-size: 13px;
-    animation: fadeIn 0.2s ease-in-out;
-}
-
-.logout {
-    animation: fadeIn 0.2s ease-in-out;
-    margin-left: auto;
-}
-
-.logout svg {
-    color: var(--logout);
-}
-
-body.collapsed .logout {
-    display: none;
-}
-
 /*? Expand button */
 
 .expand-btn {

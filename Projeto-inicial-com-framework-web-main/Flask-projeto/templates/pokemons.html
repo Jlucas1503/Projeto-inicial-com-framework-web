@@ -87,62 +87,55 @@
 
   <!-- Inicio dos cards -->
   <section class="container">
+    <form class="testes" action="/pokemons" method="post">
+      <label>Tipo:</label>
+      <select name="tipo" id="tipo">
+        <option>Todos</option>
+        <option>Normal</option>
+        <option>Fogo</option>
+        <option>Água</option>
+        <option>Grama</option>
+        <option>Voador</option>
+        <option>Lutador</option>
+        <option>Veneno</option>
+        <option>Elétrico</option>
+        <option>Terra</option>
+        <option>Pedra</option>
+        <option>Psíquico</option>
+        <option>Gelo</option>
+        <option>Inseto</option>
+        <option>Fantasma</option>
+        <option>Ferro</option>
+        <option>Dragão</option>
+        <option>Sombrio</option>
+        <option>Fada</option>
+      </select>
+      <label>Raridade:</label>
+      <select name="raridade" id="raridade">
+        <option>Todos</option>
+        <option>Muito Comum</option>
+        <option>Comum</option>
+        <option>Incomum</option>
+        <option>Raro</option>
+        <option>Muito raro</option>
+        <option>Épico</option>
+        <option>Lendário</option>
+      </select>
+      <button type="submit">Confirmar</button>
+    </form>
     <div class="card__container swiper">
       <div class="card__content">
         <div class="swiper-wrapper">
-          <article class="card__article swiper-slide">
-            <div class="card__image">
-              <img src="data:image/jpeg;base64,{{ foto1 }}" alt="Foto do Pokémon" class="card__img">
-            </div>
-            <div class="card__data">
-              <p><a href="{{ url_for('mostrar_pokemons', nome=nome1) }}" class="card__button">{{ nome1 }}</a></p>
-            </div>
-          </article>
-
-          <article class="card__article swiper-slide">
-            <div class="card__image">
-              <img src="data:image/jpeg;base64,{{ foto2 }}" alt="Foto do Pokémon" class="card__img">
-            </div>
-            <div class="card__data">
-              <p><a href="{{ url_for('mostrar_pokemons', nome=nome2) }}" class="card__button">{{ nome2 }}</a></p>
-            </div>
-          </article>
-
-          <article class="card__article swiper-slide">
-            <div class="card__image">
-              <img src="data:image/jpeg;base64,{{ foto3 }}" alt="Foto do Pokémon" class="card__img">
-            </div>
-            <div class="card__data">
-              <p><a href="{{ url_for('mostrar_pokemons', nome=nome3) }}" class="card__button">{{ nome3 }}</a></p>
-            </div>
-          </article>
-
-          <article class="card__article swiper-slide">
-            <div class="card__image">
-              <img src="data:image/jpeg;base64,{{ foto4 }}" alt="Foto do Pokémon" class="card__img">
-            </div>
-            <div class="card__data">
-              <p><a href="{{ url_for('mostrar_pokemons', nome=nome4) }}" class="card__button">{{ nome4 }}</a></p>
-            </div>
-          </article>
-
-          <article class="card__article swiper-slide">
-            <div class="card__image">
-              <img src="data:image/jpeg;base64,{{ foto5 }}" alt="Foto do Pokémon" class="card__img">
-            </div>
-            <div class="card__data">
-              <p><a href="{{ url_for('mostrar_pokemons', nome=nome5) }}" class="card__button">{{ nome5 }}</a></p>
-            </div>
-          </article>
-
-          <article class="card__article swiper-slide">
-            <div class="card__image">
-              <img src="data:image/jpeg;base64,{{ foto6 }}" alt="Foto do Pokémon" class="card__img">
-            </div>
-            <div class="card__data">
-              <p><a href="{{ url_for('mostrar_pokemons', nome=nome6) }}" class="card__button">{{ nome6 }}</a></p>
-            </div>
-          </article>
+          {% for pokemon in pokemons %}
+            <article class="card__article swiper-slide">
+              <div class="card__image">
+                <img src="data:image/jpeg;base64,{{ pokemon.foto }}" alt="Foto do Pokémon" class="card__img">
+              </div>
+              <div class="card__data">
+                <p><a href="{{ url_for('mostrar_pokemons', nome=pokemon.nome) }}" class="card__button">{{ pokemon.nome }}</a></p>
+              </div>
+            </article>
+          {% endfor %}
         </div>
       </div>
 
@@ -160,7 +153,7 @@
     </div>
   </section>
   <!-- Fim dos cards -->
-  
+
 </body>
 
 </html>

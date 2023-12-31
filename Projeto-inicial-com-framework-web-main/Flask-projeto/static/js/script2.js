@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let swiperCards = new Swiper(".card__content", { // Linha com o erro!!!
+    let swiperCards = new Swiper(".card__content", {
         loop: true,
         spaceBetween: 32,
         grabCursor: true,

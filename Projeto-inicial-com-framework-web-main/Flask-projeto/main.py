@@ -205,21 +205,85 @@ def mostrar_pokemons(nome):
     else:
         return render_template("negativa1.html", mensagem="Parece que não existe um pokemon com essas características. Confira seus dados e tente novamente!")
     
-@app.route('/pokemons') #Página Principal do site
+@app.route('/pokemons', methods=['GET', 'POST']) 
 def pokemons():
-    cursor.execute("SELECT nome, imagem FROM pokemon ORDER BY RAND() LIMIT 6;")
-    resultados = cursor.fetchall()
+    if request.method == 'POST':
+        tipopokemon = request.form['tipo']
+        raridadepokemon = request.form['raridade']
 
-    dados_pokemon = []
-    for linha in resultados:
-        nome_pokemon = linha[0]
-        imagem_pokemon = linha[1]
-        imagem_base64 = base64.b64encode(imagem_pokemon).decode('utf-8')
+        if tipopokemon == "Todos" and raridadepokemon == "Todos":
+            cursor.execute("SELECT nome, imagem FROM pokemon;")
+            resultados = cursor.fetchall()
 
-        dados_pokemon.append(nome_pokemon)
-        dados_pokemon.append(imagem_base64)
+            dados_pokemon = []
+            for linha in resultados:
+                nome_pokemon = linha[0]
+                imagem_pokemon = linha[1]
+                imagem_base64 = base64.b64encode(imagem_pokemon).decode('utf-8')
 
-    return render_template("pokemons.html", nome1=dados_pokemon[0], foto1=dados_pokemon[1], nome2=dados_pokemon[2], foto2=dados_pokemon[3], nome3=dados_pokemon[4], foto3=dados_pokemon[5], nome4=dados_pokemon[6], foto4=dados_pokemon[7], nome5=dados_pokemon[8], foto5=dados_pokemon[9], nome6=dados_pokemon[10], foto6=dados_pokemon[11])
+                pokemon = {"nome": nome_pokemon, "foto": imagem_base64}
+                dados_pokemon.append(pokemon)
+
+            return render_template("pokemons.html", pokemons=dados_pokemon)
+        
+        elif tipopokemon != "Todos" and raridadepokemon == "Todos":
+            cursor.execute(f"SELECT nome, imagem FROM pokemon WHERE tipo = '{tipopokemon}';")
+            resultados = cursor.fetchall()
+
+            dados_pokemon = []
+            for linha in resultados:
+                nome_pokemon = linha[0]
+                imagem_pokemon = linha[1]
+                imagem_base64 = base64.b64encode(imagem_pokemon).decode('utf-8')
+
+                pokemon = {"nome": nome_pokemon, "foto": imagem_base64}
+                dados_pokemon.append(pokemon)
+
+            return render_template("pokemons.html", pokemons=dados_pokemon)
+        
+        elif raridadepokemon != "Todos" and tipopokemon == "Todos":
+            cursor.execute(f"SELECT nome, imagem FROM pokemon WHERE raridade = '{raridadepokemon}';")
+            resultados = cursor.fetchall()
+
+            dados_pokemon = []
+            for linha in resultados:
+                nome_pokemon = linha[0]
+                imagem_pokemon = linha[1]
+                imagem_base64 = base64.b64encode(imagem_pokemon).decode('utf-8')
+
+                pokemon = {"nome": nome_pokemon, "foto": imagem_base64}
+                dados_pokemon.append(pokemon)
+
+            return render_template("pokemons.html", pokemons=dados_pokemon)
+        
+        else:
+            cursor.execute(f"SELECT nome, imagem FROM pokemon WHERE raridade = '{raridadepokemon}' AND tipo = '{tipopokemon}';")
+            resultados = cursor.fetchall()
+
+            dados_pokemon = []
+            for linha in resultados:
+                nome_pokemon = linha[0]
+                imagem_pokemon = linha[1]
+                imagem_base64 = base64.b64encode(imagem_pokemon).decode('utf-8')
+
+                pokemon = {"nome": nome_pokemon, "foto": imagem_base64}
+                dados_pokemon.append(pokemon)
+
+            return render_template("pokemons.html", pokemons=dados_pokemon)
+    else:
+        cursor.execute("SELECT nome, imagem FROM pokemon;")
+        resultados = cursor.fetchall()
+
+        dados_pokemon = []
+        for linha in resultados:
+            nome_pokemon = linha[0]
+            imagem_pokemon = linha[1]
+            imagem_base64 = base64.b64encode(imagem_pokemon).decode('utf-8')
+
+            pokemon = {"nome": nome_pokemon, "foto": imagem_base64}
+            dados_pokemon.append(pokemon)
+
+        return render_template("pokemons.html", pokemons=dados_pokemon)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -300,67 +300,6 @@ body.collapsed .sidebar-links li {
   visibility: visible;
 }
 
-/*? profile part */
-.sidebar__profile {
-  margin-top: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-direction: row;
-  padding: 0 16px;
-  color: var(--text-link);
-  overflow-x: hidden;
-  min-height: 42px;
-}
-
-.avatar__wrapper {
-  position: relative;
-  display: flex;
-}
-
-.avatar {
-  display: block;
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-.avatar__name {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  white-space: nowrap;
-  animation: fadeIn 0.2s ease-in-out;
-}
-
-.user-name {
-  font-weight: 600;
-  text-align: left;
-  color: var(--text-link);
-  animation: fadeIn 0.2s ease-in-out;
-}
-
-.email {
-  color: var(--text-link);
-  font-size: 13px;
-  animation: fadeIn 0.2s ease-in-out;
-}
-
-.logout {
-  animation: fadeIn 0.2s ease-in-out;
-  margin-left: auto;
-}
-
-.logout svg {
-  color: var(--logout);
-}
-
-body.collapsed .logout {
-  display: none;
-}
-
 /*? Expand button */
 
 .expand-btn {
@@ -413,6 +352,7 @@ body.collapsed .expand-btn svg {
 }
 
 .card__container {
+  margin-top: 17vh;
   padding-block: 5rem;
 }
 
@@ -530,4 +470,37 @@ body.collapsed .expand-btn svg {
   .swiper-button-next {
     right: -1rem;
   }
+}
+
+.testes {
+  flex: 1;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 800px;
+  width: 100%;
+}
+
+.testes select {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 30%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.testes button {
+  display: inline-block;
+  background-color: var(--dark-color);
+  padding: .75rem 1.5rem;
+  border-radius: .25rem;
+  color: var(--first-color);
+  font-weight: 600;
+}
+
+.testes label {
+  font-family: 'Silkscreen', sans-serif;
 }
